@@ -1,0 +1,24 @@
+{
+  "name": "angular-treeviewer",
+  "version": "0.1.0",
+  "homepage": "https://github.com/russellmorley/angular-treeviewer",
+  "authors": [
+    "Russell Morley <russell@compass-point.net>"
+  ],
+  "description": "An expandable and searchable treeview directive for displaying, searching, and interacting with arbitrary heirarchical data",
+  "main": "dist/angular-treeviewer.js",
+  "keywords": [
+    "tree",
+    "expandable",
+    "angular",
+    "directive"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "^1.3"
+  }
+}

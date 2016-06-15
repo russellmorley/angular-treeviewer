@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test Angular Treeviewer</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.18/angular.min.js"></script>
+    <link rel='stylesheet' href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"></style>
+    <script src="dist/angular-treeviewer.js"></script>
+
+    <script>
+        angular.module("app", ['angularTreeViewer']).controller("TestTreeviewerController", ['$scope', function ($scope) {
+            var json = '{"header":{"process":"transmitEligibility","version":"2"},"body":{"returnType":"XML","TRX_ID":"223912732","TYPE":"271","DATE":"8/22/2013","ERROR_CODE":"0","ERROR_MSG":[],"PAT_FIRST":"Ally","PAT_LAST":"GUDRITZ","PAYER_ID":"65978","PAYER_NAME":"METLIFE EL PASO TX","HAVE_AAA":"FALSE","HAVE_ACTIVE_EB":"TRUE","HAVE_INACTIVE_EB":"FALSE","SUB_FIRST":"Ally","SUB_LAST":"GUDRITZ","SUB_BIRTH_DT":"19500301","SUB_MEMBER_ID":"123456789","GROUP_NUM":"121332","SUB_IS_PAT":"TRUE","DEP_RELATION":[],"DEP_BIRTH_DT":[],"CATEGORY_CODE":"0","REASON_CODE":[],"coverageTypes":{"coverageType":"Dental Care,Employee and spouse,Active Coverage,Group Policy","coverageDescription":""},"coverageDependentDates":["Eligibility 01/01/2011","Service 01/01/2013 - 12/31/2013"],"coverageDependentMessages":["COB:Standard","Information is only a summary of eligibility and benefits determined by current status.  This is not a guarantee of eligibility, benefits coverage or claim payment.  For information about codes not listed or additional benefit details contact Customer Service."],"deductibleItems":[{"deductibleGroup":"Family","deductibleNote":"Contract","deductibleInNetwork":"None","deductibleOutNetwork":"None"},{"deductibleGroup":"Family","deductibleNote":"Diagnostic Dental-Contract","deductibleInNetwork":"None","deductibleOutNetwork":"None"},{"deductibleGroup":"Family","deductibleNote":"Orthodontics-Contract","deductibleInNetwork":"None","deductibleOutNetwork":"None"},{"deductibleGroup":"Family","deductibleNote":"Routine (Preventive) Dental-Contract","deductibleInNetwork":"None","deductibleOutNetwork":"None"},{"deductibleGroup":"Individual","deductibleNote":"Contract","deductibleInNetwork":"$50","deductibleOutNetwork":"$50"},{"deductibleGroup":"Individual","deductibleNote":"Remaining","deductibleInNetwork":"$50","deductibleOutNetwork":"$50"},{"deductibleGroup":"Individual","deductibleNote":"Diagnostic Dental-Contract","deductibleInNetwork":"None","deductibleOutNetwork":"None"},{"deductibleGroup":"Individual","deductibleNote":"Orthodontics-Contract","deductibleInNetwork":"None","deductibleOutNetwork":"None"},{"deductibleGroup":"Individual","deductibleNote":"Routine (Preventive) Dental-Contract","deductibleInNetwork":"None","deductibleOutNetwork":"None"}],"maximumItems":[{"maxGroup":"","maxNote":"Premier/OON","maxInNetwork":"","maxOutNetwork":"","maxMessage":""},{"maxGroup":"","maxNote":"PPO","maxInNetwork":"","maxOutNetwork":"","maxMessage":""},{"maxGroup":"","maxNote":"Premier/OON","maxInNetwork":"","maxOutNetwork":"","maxMessage":""},{"maxGroup":"","maxNote":"PPO","maxInNetwork":"","maxOutNetwork":"","maxMessage":""},{"maxGroup":"","maxNote":"Premier/OON","maxInNetwork":"","maxOutNetwork":"","maxMessage":""},{"maxGroup":"","maxNote":"PPO","maxInNetwork":"","maxOutNetwork":"","maxMessage":""},{"maxGroup":"Individual","maxNote":"Contract","maxInNetwork":"$2,000","maxOutNetwork":"$2,000","maxMessage":""},{"maxGroup":"Individual","maxNote":"Remaining","maxInNetwork":"$1,965","maxOutNetwork":"$1,965","maxMessage":""},{"maxGroup":"Individual","maxNote":"Premier/OON Lifetime","maxInNetwork":"$2,250","maxOutNetwork":"$2,250","maxMessage":""},{"maxGroup":"Individual","maxNote":"PPO Lifetime","maxInNetwork":"$2,250","maxOutNetwork":"$2,250","maxMessage":""},{"maxGroup":"Individual","maxNote":"Premier/OON Lifetime Remaining","maxInNetwork":"$0","maxOutNetwork":"$0","maxMessage":""},{"maxGroup":"Individual","maxNote":"PPO Lifetime Remaining","maxInNetwork":"$0","maxOutNetwork":"$0","maxMessage":""}],"coverageItems":[{"coverageName":"Diagnostic Dental","coverageInNetwork":"100 %","coverageOutNetwork":"100 %","coverageNote":""},{"coverageName":"Periodontics","coverageInNetwork":"80 %","coverageOutNetwork":"80 %","coverageNote":""},{"coverageName":"Restorative","coverageInNetwork":"50 %","coverageOutNetwork":"50 %","coverageNote":"Contact payer for detailed information related to Restorative benefits."},{"coverageName":"Endodontics","coverageInNetwork":"80 %","coverageOutNetwork":"80 %","coverageNote":""},{"coverageName":"Orthodontics","coverageInNetwork":"50 %","coverageOutNetwork":"50 %","coverageNote":"Age, High Value (99)/ Age, High Value (99)"},{"coverageName":"Prosthodontics","coverageInNetwork":"50 %","coverageOutNetwork":"50 %","coverageNote":""},{"coverageName":"Oral Surgery","coverageInNetwork":"80 %","coverageOutNetwork":"80 %","coverageNote":""},{"coverageName":"Routine (Preventive) Dental","coverageInNetwork":"100 %","coverageOutNetwork":"100 %","coverageNote":""}]}}';
+            $scope.fullTree = angular.fromJson(json);
+    }])
+</script>
+<style>
+    .expanded-item-with-icon {
+        margin-left: 8px;
+    }
+    .expanded-item-without-icon {
+        margin-left: 25px;
+    }
+    .root-item-without-icon {
+        margin-left: 17px;
+    }
+    .key {
+        color:#006666;
+        display: inline-block; 
+        width:200px;
+    }
+    .delimiter {
+        display:none;
+    }
+    .value {
+        color:#009966;
+    }
+    body {
+        font-family:Helvetica,Arial,SanSerif;
+    }
+    .search-box {
+        border-color:#006633;
+    }
+    .search-count {
+        color:#006633;
+    }
+
+</style>
+  
+</head>
+<body ng-app="app" >
+    <div ng-controller="TestTreeviewerController" >
+        <div angular-tree-viewer full-tree='fullTree.body' open-icon-class="'fa fa-minus'" close-icon-class="'fa fa-plus'" empty-icon-class="'fa fa-ban'" group-icon-class="'fa fa-file-text'" search-icon-class="'fa fa-search'" remove-empty-values="true" normalize-words="true">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<script type="text/ng-template" id="node_renderer.html">
+    <span ng-if="setControls(value)" >
+        <span ng-click="toggleControls(value)" ng-if="showLabel(key)" >
+            <span ng-class="value._iconClass">
+            </span> 
+            <label class="key" ng-if="isString(key)">{{key}}</label>
+            <label class="delimiter" ng-if="isString(key) && isPrimitive(value)">: </label>
+            <label class="value" ng-if="isPrimitive(value)">{{value}}</label>
+            <label ng-if="isObject(value)">&nbsp;</label>
+        </span>
+        <div ng-if="value._childrenVisible">
+            <div ng-repeat="(key, value) in value" ng-include="\'node_renderer.html\'" ng-class="getRepeatClass(value, false)">
+            </div>
+        </div>
+    </span>
+</script>
+<div>
+    <input class="search-box"  ng-model="search" id="inputIcon" type="text" /> 
+    <i ng-class="searchIconClass"></i>
+</div>
+<strong  ng-show="search.length > 0" class="search-count">Matching results: {{ (displayTree|filter:search).length }}</strong>
+<div ng-repeat="(key, value) in displayTree | filter:search" ng-include="\'node_renderer.html\'" ng-class="getRepeatClass(value, true)">
+</div>
