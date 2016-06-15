@@ -1,9 +1,8 @@
 # angular-treeviewer
 
-> An expandable and searchable treeview directive for displaying, searching, and interacting with arbitrary heirarchical data
+An expandable and searchable treeview Angular JS directive for displaying, searching, and interacting with arbitrary heirarchical data.
 
 ## Usage
-+ angular-forte-handler
 
 ```html
 <div angular-tree-viewer 
@@ -13,7 +12,8 @@
     empty-icon-class="'fa fa-ban'" 
     group-icon-class="'fa fa-file-text'" 
     search-icon-class="'fa fa-search'"
-    remove-empty-values="false">
+    remove-empty-values="false"
+    normalize-words="true">
 ```
 
 where:
