@@ -5,7 +5,7 @@ An expandable and searchable treeview Angular JS directive for displaying, searc
 ## Usage
 
 ```html
-<div angular-tree-viewer 
+<div angular-treeviewer 
     full-tree='fullTree' 
     open-icon-class="'fa fa-minus'" 
     close-icon-class="'fa fa-plus'" 

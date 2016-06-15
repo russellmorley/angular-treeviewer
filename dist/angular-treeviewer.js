@@ -1,5 +1,5 @@
 /**!
- * AngularJS tree viewer directive.
+ * AngularJS treeviewer directive.
  * @author Russell Morley <russell@compass-point.net>
  * @version 0.1.0
  */
@@ -9,8 +9,8 @@
 (function () {
     'use strict';
 
-    angular.module('angularTreeViewer', []).directive(
-        'angularTreeViewer',
+    angular.module('angularTreeviewer', []).directive(
+        'angularTreeviewer',
         [
             '$window',
             '$timeout',
