@@ -1,0 +1,19 @@
+{
+  "name": "angular-treeviewer",
+  "version": "0.1.2",
+  "description": "An expandable and searchable treeview directive for displaying, searching, and interacting with arbitrary heirarchical data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/russellmorley/angular-treeviewer.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/russellmorley/angular-treeviewer/issues"
+  },
+  "homepage": "https://github.com/russellmorley/angular-treeviewer#readme"
+}
