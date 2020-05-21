@@ -27,7 +27,8 @@
                         groupIconClass:                 '=?groupIconClass',
                         searchIconClass:                '=?searchIconClass',
                         removeEmptyValues:              '=?removeEmptyValues',
-                        normalizeWords:   '=?normalizeWords'
+                        normalizeWords:                 '=?normalizeWords',
+                        startContracted:                '=?startContracted'
                     },
                     link: function(scope, element, attrs, ngModel) {
                         scope.isString = function(thing) {
@@ -106,7 +107,7 @@
                         scope.$watch('fullTree', function (val) {
                             scope.search = ''; //reset search
                             scope.flattenedTree = null; //clear flattened tree
-                            scope.heirarchicalTree = preProcessTree(val, scope.removeEmptyValues, scope.normalizeWords);
+                            scope.heirarchicalTree = preProcessTree(val, scope.removeEmptyValues, scope.normalizeWords, scope.startContracted, scope.openIconClass);
                             scope.displayTree = scope.heirarchicalTree;
                         });
 
@@ -142,17 +143,21 @@
                             }
                         }
 
-                        function preProcessTree(node, removeEmptyValues, normalizeWords) {
+                        function preProcessTree(node, removeEmptyValues, normalizeWords, startContracted, openIconClass) {
                             if(node && node instanceof Array) {
                                 var newArray = [];
                                 node.forEach(function(val, idx, array) {
                                     /*jshint unused: false*/    
-                                    var newVal = preProcessTree(val, removeEmptyValues, normalizeWords);
+                                    var newVal = preProcessTree(val, removeEmptyValues, normalizeWords, startContracted, openIconClass);
                                     if (!removeEmptyValues || newVal) {
                                         newArray.push(newVal);
                                     }   
                                 });
                                 if (!removeEmptyValues || newArray.length > 0) {
+                                    if (!startContracted) {
+                                        newArray._childrenVisible = true;
+                                        newArray._iconClass = openIconClass;
+                                    }
                                     return newArray;
                                 } else {
                                     return null;
@@ -172,7 +177,7 @@
                                     cases where "a" is the only property of its object.
                                  */
                                 if (nodeProperties.length === 1 && node[nodeProperties[0]] instanceof Array) {
-                                    return preProcessTree(node[nodeProperties[0]], removeEmptyValues, normalizeWords);
+                                    return preProcessTree(node[nodeProperties[0]], removeEmptyValues, normalizeWords, startContracted, openIconClass);
                                 }
                                 var newObj = {};
                                 nodeProperties.forEach(function(key, idx, array) {
@@ -188,11 +193,15 @@
                                             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
                                         });
                                     }
-                                    var newVal = preProcessTree(node[key], removeEmptyValues, normalizeWords);
+                                    var newVal = preProcessTree(node[key], removeEmptyValues, normalizeWords, startContracted, openIconClass);
                                     if (!removeEmptyValues || newVal) {
                                         newObj[newKey] = newVal;
                                     }
                                 });
+                                if (!startContracted) {
+                                    newObj._childrenVisible = true;
+                                    newObj._iconClass = openIconClass;
+                                }
                                 return newObj;
                             } else {
                                 if (node && ((typeof node === 'string' && node.length > 0) || (typeof node === 'boolean') || (typeof node === 'number'))) {
